@@ -4,6 +4,7 @@ const express = require("express");
 const app = express(); 
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
+const Log = require('./models/logs');
 
 ////templating engine
 app.engine('jsx', require('express-react-views').createEngine());
@@ -31,7 +32,9 @@ app.get('/', (req, res) => {
 
 //Index
 app.get('/logs', (req, res) => {
-    res.send('this is my index page')
+    Log.find({}, (err, allLogs) => {
+        res.render('Index', {logs: allLogs})
+    })
 })
 
 //New
@@ -40,7 +43,14 @@ app.get('/logs/new', (req, res) => {
 })
 
 //Create
-
+app.post('/logs', (req, res) => {
+    req.body.shipIsBroken === 'on' ? //if checked, req.body.shipIsBroken is set to 'on'
+        req.body.shipIsBroken = true:
+        req.body.shipIsBroken = false
+    Log.create(req.body, (error, createdLog)=>{
+        res.redirect('/logs');
+    })
+})
 //Show
 
 //Edit
