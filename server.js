@@ -52,6 +52,11 @@ app.post('/logs', (req, res) => {
     })
 })
 //Show
+app.get('/logs/:id', (req, res) => {
+    Log.findById(req.params.id, (err, foundLog) => {
+        res.render('Show', {log: foundLog})
+    })
+})
 
 //Edit
 
