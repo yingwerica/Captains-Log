@@ -29,6 +29,27 @@ app.get('/', (req, res) => {
     res.send('Welcom to the Captains Log App!')
 })
 
+//Index
+app.get('/logs', (req, res) => {
+    res.send('this is my index page')
+})
+
+//New
+app.get('/logs/new', (req, res) => {
+    res.render('New')
+})
+
+//Create
+
+//Show
+
+//Edit
+
+//Update
+
+//Delete
+
+
 ////server listener
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`));
