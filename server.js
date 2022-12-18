@@ -59,8 +59,22 @@ app.get('/logs/:id', (req, res) => {
 })
 
 //Edit
+app.get('/logs/:id/edit', (req, res) => {
+    Log.findById(req.params.id, (err, foundLog) => {
+        res.render('Edit', {log: foundLog})
+    })
+
+})
 
 //Update
+app.put('/logs/:id', (req, res) => {
+    req.body.shipIsBroken === 'on' ? //if checked, req.body.shipIsBroken is set to 'on'
+        req.body.shipIsBroken = true:
+        req.body.shipIsBroken = false
+    Log.findByIdAndUpdate(req.params.id, req.body, (error, updatedLog)=>{
+        res.redirect(`/logs/${req.params.id}`);
+    })
+})
 
 //Delete
 app.delete('/logs/:id', (req, res) => {
