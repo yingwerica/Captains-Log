@@ -63,6 +63,11 @@ app.get('/logs/:id', (req, res) => {
 //Update
 
 //Delete
+app.delete('/logs/:id', (req, res) => {
+    Log.findByIdAndRemove(req.params.id, (err, deletedLog) => {
+        res.redirect('/logs')
+    })
+})
 
 
 ////server listener

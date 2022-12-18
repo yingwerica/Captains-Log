@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 
 export default class Index extends Component {
@@ -13,6 +14,9 @@ export default class Index extends Component {
               return (
                 <li>
                   <a href={`/logs/${log.id}`}> {log.title} </a>
+                  <form action={`/logs/${log._id}?_method=DELETE`} method="POST">
+                    <input type="submit" value="DELETE"/>
+                  </form>
                 </li>
               );
             })}
